@@ -1,0 +1,44 @@
+<input type="text" [(ngModel)]="searchText">
+<button type="button" (click)="search()">検索</button>
+
+<label>
+  <input type="radio" name="book"
+         id="rakutenSelect"
+         [(ngModel)]="select"
+         [value]="'rakuten'" [checked]="select == 'rakuten'">
+  楽天
+</label>
+
+<label>
+  <input type="radio" name="book"
+         id="googleSelect"
+         [(ngModel)]="select"
+         [value]="'google'" [checked]="select == 'google'">
+  Google
+</label>
+
+<div *ngIf="select === 'rakuten'">
+  楽天
+  <ul>
+    <ng-container *ngFor="let item of rakutenResult?.Items">
+      <li>
+      <pre>
+        {{item| json}}
+      </pre>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+
+<div *ngIf="select === 'google'">
+  Google
+  <ul>
+    <ng-container *ngFor="let item of googleResult?.items">
+      <li>
+      <pre>
+        {{item| json}}
+      </pre>
+      </li>
+    </ng-container>
+  </ul>
+</div>
